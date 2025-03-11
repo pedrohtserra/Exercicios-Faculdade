@@ -5,11 +5,8 @@ int main()
 {
     double valormensal = 0;
     double taxadejuros = 0;
-    double valorinvestido = 0;
     double valorjuros = 0;
-    double valorjurostotal = 0;
     double valortotal = 0;
-    double ajuda = 0;
     int periodo;
     
     printf("Investir por quantos meses? ");
