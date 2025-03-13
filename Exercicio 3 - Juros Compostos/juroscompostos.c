@@ -1,12 +1,13 @@
 #include <stdio.h>
 #include <math.h>
 
-int main()
+int main(void)
 {
     double valormensal = 0;
     double taxadejuros = 0;
-    double valorjuros = 0;
     double valortotal = 0;
+    double valorinvestido = 0;
+    double totaljuros = 0;
     int periodo;
     
     printf("Investir por quantos meses? ");
@@ -18,11 +19,14 @@ int main()
     
         for (int i = 0; i < periodo; i++)
         {
-        valorjuros = valorjuros * ((double) 1 + taxadejuros / (double) 100) - valormensal;
-        valortotal = (valorjuros)* -1;
+        valorinvestido += valormensal;
+        valortotal = valortotal * ((double) 1 + taxadejuros / (double) 100) + valormensal;
+        totaljuros = valortotal - valorinvestido;
         
-        printf("Total mes %d: %.2lf\n", i + 1, valortotal);
+        printf("\nTotal mes %d: %.2lf\n", i + 1, valortotal);
+        printf("Total de juros no mes %d: %.2lf\n", i + 1, totaljuros);
         }
-    printf("Valor total: %.2lf", valortotal);
+    printf("\nValor total: %.2lf\n", valortotal);
+    printf("Valor total dos juros: %.2lf\n", totaljuros);
     return 0;
 }
