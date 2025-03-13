@@ -1,7 +1,6 @@
 // O juros é apenas aplicado nos dias úteis, por isso dias = 22
 
 #include <stdio.h>
-#include <math.h>
 
 int main(void)
 {
