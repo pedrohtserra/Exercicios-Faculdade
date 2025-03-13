@@ -21,10 +21,8 @@ int main(void)
         valorinvestido += valormensal;
         valortotal = valortotal * ((double) 1 + taxadejuros / (double) 100) + valormensal;
         totaljuros = valortotal - valorinvestido;
-        
-        printf("\nTotal mes %d: %.2lf\n", i + 1, valortotal);
-        printf("Total de juros no mes %d: %.2lf\n", i + 1, totaljuros);
         }
+        
     printf("\nValor total: %.2lf\n", valortotal);
     printf("Valor total dos juros: %.2lf\n", totaljuros);
     return 0;
