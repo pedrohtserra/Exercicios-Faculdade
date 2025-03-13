@@ -10,7 +10,7 @@ int main(void)
     double valortotal = 0;
     int anos = 0;
     int dias = 22;
-    int meses = 1;
+    int meses = 12;
     
     printf("Investir por quantos anos? ");
     scanf("%d", &anos);
@@ -26,7 +26,10 @@ int main(void)
             valortotal += valormensal;
             for (int i = 0; i < dias; i++)
             {
+                if(i > 0 || j > 0)
+                {
                 valortotal = valortotal * ((double) 1 + taxadejuros / (double) 100);
+                }
             }
         }
     }
