@@ -16,7 +16,7 @@ int main()
     printf("Nota do aluno %d: ", i + 1);
     scanf("%d", &notas[i]);
     }
-    
+    // Esse tipo de "sort" se chama "Bubble Sort"
     for (int i = 0; i < quantNotas - 1; i++)
     {
             for (int j = 0; j < quantNotas - 1; j++)
