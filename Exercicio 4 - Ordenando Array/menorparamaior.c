@@ -19,7 +19,7 @@ int main()
     // Esse tipo de "sort" se chama "Bubble Sort"
     for (int i = 0; i < quantNotas - 1; i++)
     {
-            for (int j = 0; j < quantNotas - 1; j++)
+            for (int j = 0; j < quantNotas - i - 1; j++)
             {
                 if (notas[j] > notas[j + 1]) // Apenas foi trocado o sinal
                 {
