@@ -11,7 +11,7 @@ int main(void)
     
     do
     {
-    scanf("%d", &tamanho);
+        scanf("%d", &tamanho);
     } while (tamanho <= 0);
     
     int *sequencia = (int*) malloc (tamanho * sizeof(int));

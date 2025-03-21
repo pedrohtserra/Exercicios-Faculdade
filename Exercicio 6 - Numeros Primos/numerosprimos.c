@@ -8,10 +8,10 @@ int main(void)
     
     printf("Escolha um número: ");
     
-    if (numero <= 0)
+    do
     {
-        scanf("%d", &numero);
-    }
+    scanf("%d", &numero);
+    } while (numero <= 0);
     
     int resultado = verificar(numero);
     
