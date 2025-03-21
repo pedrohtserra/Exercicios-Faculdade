@@ -9,10 +9,10 @@ int main(void)
   
     printf("Quantos números na sequência? ");
     
-    if (tamanho <= 0)
+    do
     {
     scanf("%d", &tamanho);
-    }
+    } while (tamanho <= 0);
     
     int *sequencia = (int*) malloc (tamanho * sizeof(int));
     
