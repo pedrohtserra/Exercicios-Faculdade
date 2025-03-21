@@ -10,7 +10,7 @@ int main(void)
     
     do
     {
-    scanf("%d", &numero);
+        scanf("%d", &numero);
     } while (numero <= 0);
     
     int resultado = verificar(numero);
