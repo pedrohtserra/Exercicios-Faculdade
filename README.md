@@ -1,3 +1,2 @@
-Esse é um repertório dedicado aos exercícios da minha faculdade.<br/>
-Códigos desenvolvidos sem uso de ChatGPT.<br/>
-Os códigos vão conter bugs, pois foram feitos para a prática e aprendizado da minha lógica de programação.
+Esse repertório é dedicado aos exercícios sobre programação e algorítmos da minha faculdade.<br/>
+Os códigos poderão conter bugs, pois foram feitos para a prática e aprendizado da minha lógica de programação.
