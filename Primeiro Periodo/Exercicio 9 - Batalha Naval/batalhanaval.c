@@ -6,7 +6,10 @@
 
 void iniciar_mapa(int mapa1[tamanho][tamanho], int mapa2[tamanho][tamanho]);
 void definir_mapa(int mapa1[tamanho][tamanho], int jogador);
-void imprimir_mapa(int mapa[tamanho][tamanho], int jogador);
+int atacar_mapa(int mapa1[tamanho][tamanho], int mapa2[tamanho][tamanho], int jogador1, int jogador2);
+void imprimir_mapa(int mapa[tamanho][tamanho]);
+void iniciar_mapa_jogo(int mapa_visivel1[tamanho][tamanho], int mapa_visivel2[tamanho][tamanho]);
+
 
 int main(void)
 {
@@ -18,20 +21,22 @@ int main(void)
     iniciar_mapa(mapa1, mapa2); // criando um mapa para cada jogador
 
     definir_mapa(mapa1, jogador1); // definir mapa do jogador 1
-    imprimir_mapa(mapa1, jogador1); // teste para ver se os barcos estão nos seus devidos lugares
+    imprimir_mapa(mapa1); // teste para ver se os barcos estão nos seus devidos lugares
     
     definir_mapa(mapa2, jogador2); // definir mapa do jogador 2
-    imprimir_mapa(mapa2, jogador2); // teste para ver se os barcos estão nos seus devidos lugares novamente
+    imprimir_mapa(mapa2); // teste para ver se os barcos estão nos seus devidos lugares novamente
+
+    int jogador_vencedor = atacar_mapa(mapa1, mapa2, jogador1, jogador2);
+
+    printf("Vitória do Jogador %d\n", jogador_vencedor);
 
     return 0;
 }
 
 void iniciar_mapa(int mapa1[tamanho][tamanho], int mapa2[tamanho][tamanho])
 {
-    for (int i = 0; i < tamanho; i++)
-    {
-        for (int j = 0; j < tamanho; j++)
-        {
+    for (int i = 0; i < tamanho; i++) {
+        for (int j = 0; j < tamanho; j++) {
             mapa1[i][j] = 0;
             mapa2[i][j] = 0;
         }
@@ -51,6 +56,7 @@ void definir_mapa(int mapa[tamanho][tamanho], int jogador)
         for (int j = 0; j < i + 1; j++) {
             int tamanhoNavio = navios[i];
 
+            imprimir_mapa(mapa);
             printf("\nEscolha uma posição para o navio %d de tamanho %d:\n", j + 1, tamanhoNavio);
             
             // escolher linha
@@ -83,7 +89,7 @@ void definir_mapa(int mapa[tamanho][tamanho], int jogador)
 
             if (verhor == 0) { // horizontal
                 if (coluna + tamanhoNavio > tamanho) {
-                    printf("O navio ultrapassa os limites do mapa! Escolha outra posição.\n\n");
+                    printf("O navio está saindo do mapa, escolha outra posição.\n\n");
                     j--; // repete a pergunta de linha, coluna, vertical ou horizontal
                     continue;
                 }
@@ -105,7 +111,7 @@ void definir_mapa(int mapa[tamanho][tamanho], int jogador)
                 }
             } else { // vertical
                 if (linha + tamanhoNavio > tamanho) {
-                    printf("O navio ultrapassa os limites do mapa! Escolha outra posição.\n");
+                    printf("O navio está saindo do mapa, escolha outra posição.\n");
                     j--;
                     continue;
                 }
@@ -130,13 +136,93 @@ void definir_mapa(int mapa[tamanho][tamanho], int jogador)
     }
 }
 
-void imprimir_mapa(int mapa[tamanho][tamanho], int jogador) 
+int atacar_mapa(int mapa1[tamanho][tamanho], int mapa2[tamanho][tamanho], int jogador1, int jogador2)
 {
-    printf("\nMapa Atual do Jogador %d:\n", jogador);
+    int linha = 0;
+    int coluna = 0;
+    int acertos1 = 0, acertos2 = 0;
+    int total_partes = 30;
+    int jogador_atual = jogador1;
+    int mapa_visivel1[tamanho][tamanho];
+    int mapa_visivel2[tamanho][tamanho];
+
+    iniciar_mapa_jogo(mapa_visivel1, mapa_visivel2);
+
+    while (1)
+    {
+        int (*mapa_invisivel)[tamanho] = (jogador_atual == jogador1) ? mapa2 : mapa1;
+        int (*mapa_visivel)[tamanho] = (jogador_atual == jogador1) ? mapa_visivel1 : mapa_visivel2;
+        int *acertos = (jogador_atual == jogador1) ? &acertos1 : &acertos2;
+
+        printf("Turno de Ataque do Jogador %d\n", jogador_atual);
+        imprimir_mapa(mapa_visivel);
+
+        do {
+            printf("Linha (1 a 15): ");
+            scanf("%d", &linha);
+            printf("\n");
+        } while (linha < 1 || linha > tamanho);
+        
+        do {
+            printf("Coluna (1 a 15): ");
+            scanf("%d", &coluna);
+            printf("\n");
+        } while (coluna < 1 || coluna > tamanho);
+
+        linha--;
+        coluna--;
+
+        if (mapa_visivel[linha][coluna] != 0) {
+            printf("\nPosição escolhida já atacada, tente outra posição.\n");
+            continue;
+        }
+
+        if (mapa_invisivel[linha][coluna] > 0) {
+            printf("Você acertou um navio!");
+            mapa_visivel[linha][coluna] = mapa_invisivel[linha][coluna];            
+            (*acertos)++;
+
+            if (*acertos == total_partes)
+            {
+                printf("\nJogador %d derrubou todos os navios, jogo encerrado!\n\n", jogador_atual);
+                return jogador_atual;
+            }
+        } else {
+            printf("\nPloc... Jogador %d acertou a água!", jogador_atual);
+            mapa_visivel[linha][coluna] = -1;
+        }
+
+        imprimir_mapa(mapa_visivel);
+
+        jogador_atual = (jogador_atual == jogador1) ? jogador2 : jogador1;
+    }
+}
+
+void imprimir_mapa(int mapa[tamanho][tamanho]) 
+{
+    printf("\nMapa: \n   ");
+    for (int i = 0; i < tamanho; i++) {
+        printf("%2d ", i + 1);
+    }
+    printf("\n");
     for (int i = 0; i < tamanho; i++) {
         for (int j = 0; j < tamanho; j++) {
+            if (j == 0)
+            {
+                printf("%2d  ", i + 1);
+            }
             printf("%d  ", mapa[i][j]);
         }
         printf("\n");
+    }
+}
+
+void iniciar_mapa_jogo(int mapa_visivel1[tamanho][tamanho], int mapa_visivel2[tamanho][tamanho])
+{
+    for (int i = 0; i < tamanho; i++) {
+        for (int j = 0; j < tamanho; j++) {
+            mapa_visivel1[i][j] = 0;
+            mapa_visivel2[i][j] = 0;
+        }
     }
 }
