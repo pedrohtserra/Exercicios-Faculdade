@@ -21,10 +21,10 @@ int main(void)
     iniciar_mapa(mapa1, mapa2); // criando um mapa para cada jogador
 
     definir_mapa(mapa1, jogador1); // definir mapa do jogador 1
-    imprimir_mapa(mapa1); // teste para ver se os barcos estão nos seus devidos lugares
+    imprimir_mapa(mapa1);
     
     definir_mapa(mapa2, jogador2); // definir mapa do jogador 2
-    imprimir_mapa(mapa2); // teste para ver se os barcos estão nos seus devidos lugares novamente
+    imprimir_mapa(mapa2);
 
     int jogador_vencedor = atacar_mapa(mapa1, mapa2, jogador1, jogador2);
 
