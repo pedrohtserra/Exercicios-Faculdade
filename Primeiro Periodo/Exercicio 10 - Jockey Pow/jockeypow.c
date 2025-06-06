@@ -1,4 +1,6 @@
 #include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
 
 char escolhaLinguagem();
 void jockeyPTBR();
@@ -49,37 +51,34 @@ void jockeyPTBR(){
     int jogador2 = 0;
     
     while (vencedor == 0){
-        printf("\n\nVez do Jogador 1:\n\n");
+        printf("\n\nEscolha do Jogador:\n\n");
         
         do {
             printf("(1) para pedra, (2) para papel ou (3) para tesoura: ");
             scanf("%d", &jogador1);
         } while (jogador1 != 1 && jogador1 != 2 && jogador1 != 3);
+
+        srand(time(NULL));
         
-        printf("\n\nVez do Jogador 2:\n\n");
-        
-        do {
-            printf("(1) para pedra, (2) para papel ou (3) para tesoura: ");
-            scanf("%d", &jogador2);
-        } while (jogador2 != 1 && jogador2 != 2 && jogador2 != 3);
+        jogador2 = (rand() % 3) + 1; 
         
         if (jogador1 == 1 && jogador2 == 3){
-            printf("\n\n\nJogador 1 venceu Jogador 2 com uma pedra!\n\n");
+            printf("\n\n\nJogador venceu BOT com uma pedra!\n\n");
             vencedor = 1;
         } else if (jogador1 == 2 && jogador2 == 1){
-            printf("\n\n\nJogador 1 venceu Jogador 2 com um papel!\n\n");
+            printf("\n\n\nJogador venceu BOT com um papel!\n\n");
             vencedor = 1;
         } else if (jogador1 == 3 && jogador2 == 2){
-            printf("\n\n\nJogador 1 venceu Jogador 2 com uma tesoura!\n\n");
+            printf("\n\n\nJogador venceu BOT com uma tesoura!\n\n");
             vencedor = 1;
         } else if (jogador2 == 1 && jogador1 == 3){
-            printf("\n\n\nJogador 2 venceu Jogador 1 com uma pedra!\n\n");
+            printf("\n\n\nBOT venceu Jogador com uma pedra!\n\n");
             vencedor = 1;
         } else if (jogador2 == 2 && jogador1 == 1){
-            printf("\n\n\nJogador 2 venceu Jogador 1 com um papel!\n\n");
+            printf("\n\n\nBOT venceu Jogador com um papel!\n\n");
             vencedor = 1;
         } else if (jogador2 == 3 && jogador1 == 2){
-            printf("\n\n\nJogador 2 venceu Jogador 1 com uma tesoura!\n\n");
+            printf("\n\n\nBOT venceu Jogador com uma tesoura!\n\n");
             vencedor = 1;
         } else {
             printf("\n\nEmpate, mais uma rodada!");
@@ -93,37 +92,35 @@ void jockeyENG(){
     int jogador2 = 0;
     
     while (vencedor == 0) {
-        printf("\n\nPlayer 1's turn:\n\n");
+        printf("\n\nPlayer's pick:\n\n");
         
         do {
             printf("(1) for rock, (2) for paper, or (3) for scissors: ");
             scanf("%d", &jogador1);
         } while (jogador1 != 1 && jogador1 != 2 && jogador1 != 3);
         
-        printf("\n\nPlayer 2's turn:\n\n");
+        srand(time(NULL));
         
-        do {
-            printf("(1) for rock, (2) for paper, or (3) for scissors: ");
-            scanf("%d", &jogador2);
-        } while (jogador2 != 1 && jogador2 != 2 && jogador2 != 3);
+        jogador2 = (rand() % 3) + 1; 
+
         
         if (jogador1 == 1 && jogador2 == 3) {
-            printf("\n\n\nPlayer 1 defeated Player 2 with a rock!\n\n");
+            printf("\n\n\nPlayer defeated BOT with a rock!\n\n");
             vencedor = 1;
         } else if (jogador1 == 2 && jogador2 == 1) {
-            printf("\n\n\nPlayer 1 defeated Player 2 with a paper!\n\n");
+            printf("\n\n\nPlayer defeated BOT with a paper!\n\n");
             vencedor = 1;
         } else if (jogador1 == 3 && jogador2 == 2) {
-            printf("\n\n\nPlayer 1 defeated Player 2 with scissors!\n\n");
+            printf("\n\n\nPlayer defeated BOT with scissors!\n\n");
             vencedor = 1;
         } else if (jogador2 == 1 && jogador1 == 3) {
-            printf("\n\n\nPlayer 2 defeated Player 1 with a rock!\n\n");
+            printf("\n\n\nBOT defeated Player with a rock!\n\n");
             vencedor = 1;
         } else if (jogador2 == 2 && jogador1 == 1) {
-            printf("\n\n\nPlayer 2 defeated Player 1 with a paper!\n\n");
+            printf("\n\n\nBOT defeated Player with a paper!\n\n");
             vencedor = 1;
         } else if (jogador2 == 3 && jogador1 == 2) {
-            printf("\n\n\nPlayer 2 defeated Player 1 with scissors!\n\n");
+            printf("\n\n\nBOT defeated Player with scissors!\n\n");
             vencedor = 1;
         } else {
             printf("\n\nIt's a tie, another round!");
@@ -137,37 +134,34 @@ void jockeyGER(){
     int jogador2 = 0;
     
     while (vencedor == 0) {
-        printf("\n\nZug von Spieler 1:\n\n");
+        printf("\n\nAuswahl des Spielers:\n\n");
         
         do {
             printf("(1) fur Stein, (2) fur Papier oder (3) fur Schere: ");
             scanf("%d", &jogador1);
         } while (jogador1 != 1 && jogador1 != 2 && jogador1 != 3);
         
-        printf("\n\nZug von Spieler 2:\n\n");
+        srand(time(NULL));
         
-        do {
-            printf("(1) fur Stein, (2) fur Papier oder (3) fur Schere: ");
-            scanf("%d", &jogador2);
-        } while (jogador2 != 1 && jogador2 != 2 && jogador2 != 3);
+        jogador2 = (rand() % 3) + 1; 
         
         if (jogador1 == 1 && jogador2 == 3) {
-            printf("\n\n\nSpieler 1 hat Spieler 2 mit Stein besiegt!\n\n");
+            printf("\n\n\nSpieler hat BOT mit Stein besiegt!\n\n");
             vencedor = 1;
         } else if (jogador1 == 2 && jogador2 == 1) {
-            printf("\n\n\nSpieler 1 hat Spieler 2 mit Papier besiegt!\n\n");
+            printf("\n\n\nSpieler hat BOT mit Papier besiegt!\n\n");
             vencedor = 1;
         } else if (jogador1 == 3 && jogador2 == 2) {
-            printf("\n\n\nSpieler 1 hat Spieler 2 mit Schere besiegt!\n\n");
+            printf("\n\n\nSpieler hat BOT mit Schere besiegt!\n\n");
             vencedor = 1;
         } else if (jogador2 == 1 && jogador1 == 3) {
-            printf("\n\n\nSpieler 2 hat Spieler 1 mit Stein besiegt!\n\n");
+            printf("\n\n\nBOT hat Spieler mit Stein besiegt!\n\n");
             vencedor = 1;
         } else if (jogador2 == 2 && jogador1 == 1) {
-            printf("\n\n\nSpieler 2 hat Spieler 1 mit Papier besiegt!\n\n");
+            printf("\n\n\nBOT hat Spieler mit Papier besiegt!\n\n");
             vencedor = 1;
         } else if (jogador2 == 3 && jogador1 == 2) {
-            printf("\n\n\nSpieler 2 hat Spieler 1 mit Schere besiegt!\n\n");
+            printf("\n\n\nBOT hat Spieler mit Schere besiegt!\n\n");
             vencedor = 1;
         } else {
             printf("\n\n\nUnentschieden, noch eine Runde!");
